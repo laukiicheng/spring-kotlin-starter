@@ -1,0 +1,59 @@
+server:
+  servlet:
+    contextPath: /kotlin-spring-service
+  port: 8080
+  ssl:
+    enabled: true
+    key-store-type: "PKCS12"
+    key-store: "tls/keystore.p12"
+    key-store-password: '${KEY_STORE_PASSWORD}'
+    key-alias: "tomcat"
+
+initialSegmentCount: 4
+threadCount: 2
+
+info:
+  app:
+    containerTag: '${TagToDeploy}'
+
+spring:
+  http:
+    encoding:
+      force: false
+  application:
+    name: spring-kotlin-starter
+  profiles:
+    active: local
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+---
+spring:
+  profiles: local
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/kotlin-spring-service"
+
+server:
+  ssl:
+    enabled: false
+
+baseApiUrl: "http://localhost:8080"
+
+
+initialSegmentCount: 1
+threadCount: 1
+
+---
+spring:
+  profiles: development
+
+---
+spring:
+  profiles: test
+
+---
+spring:
+  profiles: production

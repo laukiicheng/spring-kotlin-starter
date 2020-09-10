@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: "spring-kotlin-starter"
+  profiles:
+    active: local
+  main:
+    allow-bean-definition-overriding: true
+
+health:
+  config:
+    enabled: false
+
+---
+spring:
+  profiles: local
+
+---
+spring:
+  profiles: pipeline
+
+---
+spring:
+  profiles: development
+
+---
+spring:
+  profiles: test
+
+---
+spring:
+  profiles: prod

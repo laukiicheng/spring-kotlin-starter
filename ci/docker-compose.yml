@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  spring-kotlin-starter:
+    image:
+    environment:
+      - KEY_STORE_PASSWORD=$KEY_STORE_PASSWORD
+      - TagToDeploy=local
+    ports:
+      - 8080:8080
+
+  mongo-db:
+    image: mongo:3.6
+    ports:
+      - 27017:27017
